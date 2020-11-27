@@ -18,6 +18,7 @@
 		<java.version>11</java.version>
 		<kotlin.version>1.4.10</kotlin.version>
 		<ktor.version>1.4.2</ktor.version>
+		<vertx.version>3.9.4</vertx.version>
 	</properties>
 
 	<dependencies>
@@ -64,6 +65,12 @@
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-web</artifactId>
+			<version>${vertx.version}</version>
 		</dependency>
 	</dependencies>
 
