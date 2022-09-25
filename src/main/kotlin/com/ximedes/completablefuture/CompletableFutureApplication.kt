@@ -1,5 +1,6 @@
 package com.ximedes.completablefuture
 
+import com.ximedes.api.ExpensiveAPICompletableFuture
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executor
-import java.util.concurrent.TimeUnit
 
 
 @SpringBootApplication
@@ -34,12 +34,14 @@ fun main(args: Array<String>) {
 }
 
 @RestController("/")
-class CompletableFutureController {
+class CompletableFutureController(val api: ExpensiveAPICompletableFuture) {
 
     @GetMapping
     @Async
     fun sleep(@RequestParam sleep: Long): CompletableFuture<String> {
-        return CompletableFuture<String>().completeOnTimeout("Hello", sleep, TimeUnit.MILLISECONDS)
+        val future = api.performExpensiveAPICall(sleep)
+        val response = future.thenApply { it.message }
+        return response
     }
 
 }

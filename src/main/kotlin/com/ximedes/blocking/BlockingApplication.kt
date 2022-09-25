@@ -1,5 +1,6 @@
 package com.ximedes.blocking
 
+import com.ximedes.api.ExpensiveAPISync
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.web.bind.annotation.GetMapping
@@ -14,12 +15,13 @@ fun main(args: Array<String>) {
 }
 
 @RestController("/")
-class BlockingController {
+class BlockingController(val api: ExpensiveAPISync) {
 
     @GetMapping
     fun sleep(@RequestParam sleep: Long): String {
-        Thread.sleep(sleep)
-        return "Hello"
+        val response = api.performExpensiveCall(sleep)
+        return response.message
     }
 
 }
+

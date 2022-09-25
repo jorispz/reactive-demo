@@ -1,6 +1,6 @@
 package com.ximedes.reactive_suspend
 
-import kotlinx.coroutines.delay
+import com.ximedes.api.ExpensiveAPISuspend
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.web.bind.annotation.GetMapping
@@ -15,12 +15,12 @@ fun main(args: Array<String>) {
 }
 
 @RestController("/")
-class ReactiveWithSuspendFunController {
+class ReactiveWithSuspendFunController(val api: ExpensiveAPISuspend) {
 
     @GetMapping
     suspend fun sleep(@RequestParam sleep: Long): String {
-        delay(sleep)
-        return "Hello"
+        val response = api.performExpensiveAPICall(sleep)
+        return response.message
     }
 
 }
