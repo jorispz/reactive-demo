@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="SLEEP_MS" elementType="Argument">
             <stringProp name="Argument.name">SLEEP_MS</stringProp>
-            <stringProp name="Argument.value">2000</stringProp>
+            <stringProp name="Argument.value">200</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>

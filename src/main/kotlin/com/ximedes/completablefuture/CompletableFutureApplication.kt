@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executor
+import java.util.concurrent.TimeUnit
 
 
 @SpringBootApplication
@@ -38,8 +39,7 @@ class CompletableFutureController {
     @GetMapping
     @Async
     fun sleep(@RequestParam sleep: Long): CompletableFuture<String> {
-        Thread.sleep(sleep)
-        return CompletableFuture.completedFuture("Hello")
+        return CompletableFuture<String>().completeOnTimeout("Hello", sleep, TimeUnit.MILLISECONDS)
     }
 
 }
