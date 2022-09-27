@@ -16,4 +16,5 @@ class ExpensiveAPI : ExpensiveAPISuspend {
         val response = webClient.get().uri("$URI?sleep=${duration}").retrieve()
         return response.bodyToMono<ExpensiveResponse>().awaitSingle()
     }
+
 }
