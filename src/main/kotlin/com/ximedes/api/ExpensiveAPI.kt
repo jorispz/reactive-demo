@@ -5,6 +5,7 @@ import reactor.core.publisher.Mono
 import java.util.concurrent.CompletableFuture
 
 const val URI = "https://3q2l17vb35.execute-api.eu-central-1.amazonaws.com/live/sleep"
+const val USE_AWS = true;
 
 data class ExpensiveResponse(val message: String)
 
