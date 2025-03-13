@@ -22,7 +22,7 @@ class CompletableFutureApplication {
         val executor = ThreadPoolTaskExecutor()
         executor.corePoolSize = 100
         executor.maxPoolSize = 100
-        executor.setQueueCapacity(500)
+        executor.queueCapacity = 500
         executor.setThreadNamePrefix("async-")
         executor.initialize()
         return executor
